@@ -36,6 +36,8 @@ if ($evento !== null && $_SERVER['REQUEST_METHOD'] == 'POST') {
         'responsavel' => $_POST['responsavel']
     ];
     $dados = $_SESSION['eventos'][$id];
+    header("Location: index.php");
+    exit();
 }
 ?>
 
