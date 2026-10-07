@@ -1,10 +1,7 @@
 <?php
-
 session_start();
 
-require_once 'init.php';
-
-
+$dados = $evento;
 
 require_once __DIR__ . "/init.php";
 
@@ -43,44 +40,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
 
 
     <?php if ($evento): ?>
-        <form action="index.php" method="POST">
-            <input type="text" name="id" id="id" hidden value="<?= $eventos['id'] ?>">
+        <form action="edicao.php" method="POST">
+            <input type="hidden" name="id" value="<?= $id ?>">
 
-            <label for="titulo">Titulo:</label>
-            <input type="text" name="titulo" id="titulo" value="<?= $eventos['titulo'] ?>">
+            <label for="titulo">Título:</label>
+            <input type="text" name="titulo" id="titulo" value="<?= htmlspecialchars($dados['titulo']) ?>">
             <br>
 
-            <label for="descricao">Descrição: </label>
-            <input type="text" name="descricao" id="descricao" value="<?= $eventos['descricao'] ?>">
+            <label for="descricao">Descrição:</label>
+            <input type="text" name="descricao" id="descricao" value="<?= htmlspecialchars($dados['descricao']) ?>">
             <br>
 
-            <label for="area">Área: </label>
-            <input type="text" name="area" id="area" value="<?= $eventos['area'] ?>">
+            <label for="area">Área:</label>
+            <input type="text" name="area" id="area" value="<?= htmlspecialchars($dados['area']) ?>">
             <br>
 
-            <label for="data">Data: </label>
-            <input type="text" name="data" id="data" value="<?= $eventos['data'] ?>">
+            <label for="data">Data:</label>
+            <input type="date" name="data" id="data" value="<?= htmlspecialchars($dados['data']) ?>">
             <br>
 
-
-            <label for="inicio">Inicio: </label>
-            <input type="text" name="inicio" id="inicio" value="<?= $eventos['inicio'] ?>">
+            <label for="inicio">Início:</label>
+            <input type="time" name="inicio" id="inicio" value="<?= htmlspecialchars($dados['inicio']) ?>">
             <br>
 
-            <label for="fim">Fim: </label>
-            <input type="text" name="fim" id="fim" value="<?= $eventos['fim'] ?>">
+            <label for="fim">Fim:</label>
+            <input type="time" name="fim" id="fim" value="<?= htmlspecialchars($dados['fim']) ?>">
             <br>
 
-            <label for="local">Local: </label>
-            <input type="text" name="local" id="local" value="<?= $eventos['local'] ?>">
+            <label for="local">Local:</label>
+            <input type="text" name="local" id="local" value="<?= htmlspecialchars($dados['local']) ?>">
             <br>
 
-            <label for="responsavel">Responsável: </label>
-            <input type="text" name="responsavel" id="responsavel" value="<?= $eventos['responsavel'] ?>">
+            <label for="responsavel">Responsável:</label>
+            <input type="text" name="responsavel" id="responsavel" value="<?= htmlspecialchars($dados['responsavel']) ?>">
             <br>
 
-            <button type="submit">Cadastrar:</button>
-
+            <button type="submit">Salvar alterações</button>
+            <a href="index.php">Cancelar</a>
         </form>
     <?php else: ?>
         <p>Selecione uma das notícias acima!</p>
