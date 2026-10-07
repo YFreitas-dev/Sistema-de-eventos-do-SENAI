@@ -1,18 +1,43 @@
 <?php
+
+
 session_start();
+
+require_once 'init.php';
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+} elseif (isset($_POST['id'])) {
+    $id = $_POST['id'];
+} else {
+    $id = null;
+}
+
+
+if (isset($_SESSION['eventos'][$id])) {
+    $evento = $_SESSION['eventos'][$id];
+} else {
+    $evento = null;
+}
 
 $dados = $evento;
 
-require_once __DIR__ . "/init.php";
-
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
-    $id = $_GET['id'];
-    header("Location: index.php?id=$id");
-    exit();
+// se o formulário foi enviado, salva
+if ($evento !== null && $_SERVER['REQUEST_METHOD'] == 'POST') {
+    $_SESSION['eventos'][$id] = [
+        'id' => $id,
+        'titulo' => $_POST['titulo'],
+        'descricao' => $_POST['descricao'],
+        'area' => $_POST['area'],
+        'data' => $_POST['data'],
+        'inicio' => $_POST['inicio'],
+        'fim' => $_POST['fim'],
+        'local' => $_POST['local'],
+        'responsavel' => $_POST['responsavel']
+    ];
+    $dados = $_SESSION['eventos'][$id];
 }
-
 ?>
-
 
 
 <!DOCTYPE html>
