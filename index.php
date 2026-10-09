@@ -15,6 +15,7 @@ $eventos = $_SESSION['eventos'];
      <h1>Eventos SENAI</h1>
     <a href="cadastro.php">Cadastrar Novo Evento</a>
     <br>
+    <a href="resetaSession.php">Resetar Sessão</a>
     <br>
     <h2>Lista de Eventos</h2>
     <?php
