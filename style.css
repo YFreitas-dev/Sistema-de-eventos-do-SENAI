@@ -34,3 +34,71 @@ p{
     padding: 10px;
     border-radius: 5px;
 }
+
+.textoCadastro {
+    margin-top: 290px;
+    text-align: center;
+    color: blue;
+    text-decoration: none;
+}
+
+.containerConfirmacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.cardConfirmacao {
+    justify-content: center;
+    align-items: center;
+    border: 1px, solid, black;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.botaoAceita {
+    align-items: center;
+}
+
+.containerCadastro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textoErro {
+    text-align: center;
+}
+
+.formCadastro {
+    border-radius: 50%;
+    font-size: 18px;
+    margin-top: 10px;
+    box-shadow: 0 0 10px #ccc;
+    text-align: center;
+    background-color: white;
+    width: 450px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #b4b2b2;
+}
+
+input {
+    align-items: center;
+}
+
+button {
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+.textoErro {
+    color: #cc1b1b
+}

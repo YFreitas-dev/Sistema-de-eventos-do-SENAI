@@ -61,6 +61,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         header("Location: cadastro.php?erro=fimInvalido");
         exit;
     }
+    
+    if ($inicioDigitado < $fimDigitado) {
+        header("Location: cadastro.php?erro=horasInvalidas");
+        exit;
+    }
+    
+
+    $inicioHora = new DateTime($inicioDigitado);
+
+    $fimHora = new DateTime($fimDigitado);
+
+    if($inicioHora >= $fimHora) {
+        header("Location: cadastro.php?erro=horasInvalidas");
+        exit;
+    }
 
     if (empty($localDigitado)) {
         header("Location: cadastro.php?erro=localInvalido");
@@ -71,6 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         header("Location: cadastro.php?erro=responsavelInvalido");
         exit;
     }
+
+
     
     $idParaCadastro = $_SESSION['proximo_id'];
 
@@ -101,54 +118,78 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <form action="" method="POST">
-        <label for="">Nome:</label>
-        <br>
-        <input type="text" name="titulo" id="titulo">
-        <br>
+    <h1>Eventos SENAI</h1>
+    <a href="cadastro.php">Cadastrar Novo Evento</a>
+    <br>
+    <a href="resetaSession.php">Resetar Sessão</a>
+    <br>
+    <a href="resetaSession.php">Voltar para o menu</a>
 
-        <label for="">Descrição</label>
-        <br>
-        <input type="text" name="descricao" id="descricao">
-        <br>
+    <div class="textoCadastro">
+        <h1>Cadastrar um novo evento</h1>
 
-        <label for="">Area</label>
-        <br>
-        <input type="text" name="area" id="area">
-        <br>
+    </div>
 
-        <label for="">Data</label>
-        <br>
-        <input type="date" name="data" id="data">
-        <br>
 
-        <label for="">Inicio:</label>
-        <br>
-        <input type="time" name="inicio" id="inicio">
-        <br>
+    <div class="containerCadastro">
 
-        <label for="">Fim:</label>
-        <br>
-        <input type="time" name="fim" id="fim">
-        <br>
 
-        <label for="">Local:</label>
-        <br>
-        <input type="text" name="local" id="local">
-        <br>
+        <div class="formCadastro">
 
-        <label for="">Responsavel:</label>
-        <br>
-        <input type="text" name="responsavel" id="responsavel">
-        <br>
+            <form action="" method="POST">
+    
+                <label for="">Nome:</label>
+                <br>
+                <input type="text" name="titulo" id="titulo">
+                <br>
+        
+                <label for="">Descrição</label>
+                <br>
+                <input type="text" name="descricao" id="descricao">
+                <br>
+        
+                <label for="">Area</label>
+                <br>
+                <input type="text" name="area" id="area">
+                <br>
+        
+                <label for="">Data</label>
+                <br>
+                <input type="date" name="data" id="data">
+                <br>
+        
+                <label for="">Inicio:</label>
+                <br>
+                <input type="time" name="inicio" id="inicio">
+                <br>
+        
+                <label for="">Fim:</label>
+                <br>
+                <input type="time" name="fim" id="fim">
+                <br>
+        
+                <label for="">Local:</label>
+                <br>
+                <input type="text" name="local" id="local">
+                <br>
+        
+                <label for="">Responsavel:</label>
+                <br>
+                <input type="text" name="responsavel" id="responsavel">
+                <br>
+        
+                <button type="submit">Cadastrar</button>
+        
+            </form>
+        </div>
+    </div>
 
-        <button type="submit">Cadastrar</button>
 
-    </form>
 
     <?php
 
@@ -158,41 +199,86 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         switch ($erro) {
             case "nomeInvalido":
-                echo "O nome digitado está incorreto, tente novamente";
+                print "
+                    <div class=textoErro>
+                        <p> Erro: O nome digitado está incorreto, tente novamente </p>
+                    </div>
+                ";
                 break;
 
             case "descricaoInvalida":
-                echo "A descricao digitada está incorreta, tente novamente";
+                print "
+                    <div class=textoErro>
+                        <p> Erro: A descricao digitada está incorreta, tente novamente </p>
+                    </div>
+                ";
                 break;
 
             case "areaInvalida":
-                echo "A área digitada está incorreta, tente novamente";
+                print "
+                    <div class=textoErro>
+                        <p> Erro: A área digitada está incorreta, tente novamente </p>
+                    </div>
+                ";
                 break;
 
             case "dataInvalida":
-                echo "A data digitada está incorreta, tente novamente";
+                print "
+                    <div class=textoErro>
+                        <p>Erro: A data digitada está incorreta, tente novamente </p>
+                    </div>
+                ";
                 break;
 
             case "inicioInvalido":
-                echo "O inicio digitada está incorreta, tente novamente";
+                print "
+                    <div class=textoErro>
+                        <p> Erro: O inicio digitada está incorreta, tente novamente </p>
+                    </div>
+                ";
                 break;
 
             case "fimInvalido":
-                echo "O fim digitada está incorreta, tente novamente";
+                print "
+                    <div class=textoErro>
+                        <p> Erro: O fim digitada está incorreta, tente novamente </p>
+                    </div>
+                ";
                 break;
 
             case "localInvalido":
-                echo "O local digitado está incorreto, tente novamente";
+
+                print "
+                    <div class=textoErro>
+                        <p> Erro: O local digitado está incorreto, tente novamente </p>
+                    </div>
+                ";
                 break;
 
             case "responsavelInvalido":
-                echo "O responsável digitado está incorreto, tente novamente";
+
+                print "
+                    <div class=textoErro>
+                        <p> Erro: O responsável digitado está incorreto, tente novamente </p>
+                    </div>
+                ";
                 break;
             
             case "camposVazios":
-                echo "Todos os campo digitados estão incorretos, tente novamente";
+                print "
+                    <div class=textoErro>
+                        <p> Erro: Todos os campo digitados estão incorretos, tente novamente </p>
+                    </div>
+                ";
                 break;
-
+            
+            case "horasInvalidas":
+                print "
+                    <div class=textoErro>
+                        <p> Erro: Os campos de horários não estão corretos, tente colocar um fim maior que o inicio </p>
+                    </div>
+                ";
+            
         }
 
 
