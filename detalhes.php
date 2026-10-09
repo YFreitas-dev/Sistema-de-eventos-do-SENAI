@@ -19,6 +19,7 @@ if(isset($_GET["id"])){
 <head>
     <meta charset="UTF-8">
     <title>Detalhes do Evento</title>
+     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 

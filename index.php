@@ -9,6 +9,7 @@ $eventos = $_SESSION['eventos'];
     <head>
        <meta charset="UTF-8">
     <title>Sistema de Eventos SENAI</title>
+     <link rel="stylesheet" href="style.css">
     </head>
     <body>
      <h1>Eventos SENAI</h1>
