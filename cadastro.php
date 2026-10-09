@@ -4,14 +4,24 @@ require_once __DIR__ . "/init.php";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    $nomeDigitado = htmlspecialchars($_POST['nome']);
-    $descricaoDigitada = htmlspecialchars($_POST['descricao']);
-    $areaDigitada = htmlspecialchars($_POST['area']);
-    $dataDigitada = htmlspecialchars($_POST['date']);
-    $inicioDigitado = htmlspecialchars($_POST['inicio']);
-    $fimDigitado = htmlspecialchars($_POST['fim']);
-    $localDigitado = htmlspecialchars($_POST['local']);
-    $responsavelDigitado = htmlspecialchars($_POST['responsavel']);
+    if ($_SESSION['proximo_id'] == 3 ) {
+        $_POST['id'] = $_SESSION['proximo_id'];
+    } else {
+        
+        $proximoId = $_SESSION['proximo_id'];
+
+        $_POST['id'] = $proximoId + 1;
+
+    }
+
+    $nomeDigitado = ($_POST['titulo']);
+    $descricaoDigitada = ($_POST['descricao']);
+    $areaDigitada = ($_POST['area']);
+    $dataDigitada = ($_POST['data']);
+    $inicioDigitado = ($_POST['inicio']);
+    $fimDigitado = ($_POST['fim']);
+    $localDigitado = ($_POST['local']);
+    $responsavelDigitado = ($_POST['responsavel']);
 
     if (
         empty($nomeDigitado) && empty($descricaoDigitada) && empty($areaDigitada) && empty($dataDigitada) && empty($inicioDigitado) && empty($fimDigitado) &&
@@ -64,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     
     $idParaCadastro = $_SESSION['proximo_id'];
 
-    $_SESSION['noticias'][$idParaCadastro] = $_POST;
+    $_SESSION['eventos'][$idParaCadastro] = $_POST;
 
     $_SESSION['proximo_id'] = $idParaCadastro++;
 
@@ -98,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <form action="" method="POST">
         <label for="">Nome:</label>
         <br>
-        <input type="text" name="nome" id="nome">
+        <input type="text" name="titulo" id="titulo">
         <br>
 
         <label for="">Descrição</label>
@@ -113,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         <label for="">Data</label>
         <br>
-        <input type="date" name="date" id="date">
+        <input type="date" name="data" id="data">
         <br>
 
         <label for="">Inicio:</label>
