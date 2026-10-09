@@ -1,8 +1,5 @@
 <?php
 
-
-session_start();
-
 require_once 'init.php';
 
 if (isset($_GET['id'])) {

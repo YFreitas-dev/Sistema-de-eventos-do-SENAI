@@ -8,7 +8,8 @@ if(isset($_GET["id"])){
 
     foreach($_SESSION["eventos"] as $item){
         if($item["id"] == $id){
-            $evento == $item;
+            $evento = $item;
+            break;
         }
     }
 }
